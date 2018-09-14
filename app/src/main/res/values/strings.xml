@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WhatToWear</string>
+    <string name="place_not_found">Sorry, no weather data found.</string>
+    <string name="open_weather_maps_app_id">a51089b1b0c72c20811d13bd44f4af3d</string>
+</resources>
