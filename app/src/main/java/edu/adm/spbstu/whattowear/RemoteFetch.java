@@ -5,38 +5,58 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.widget.Toast;
+
 import org.json.JSONObject;
 
-import android.content.Context;
+public class RemoteFetch extends AsyncTask<String, Integer, String> {
 
-public class RemoteFetch {
+    private static final String API_BASE_PATH = "https://api.darksky.net/forecast/";
+    private static final String API_KEY = "a51089b1b0c72c20811d13bd44f4af3d";
 
-    private static final String OPEN_WEATHER_MAP_API =
-            "http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric";
+    private Context context;
+    private JSONObject data;
 
-    public static JSONObject getJSON(Context context, String city){
+    RemoteFetch(Context context) {
+        this.context = context;
+    }
+
+    JSONObject getJson() {
+        return data;
+    }
+
+    @Override
+    protected String doInBackground(String... strings) {
         try {
-            URL url = new URL(String.format(OPEN_WEATHER_MAP_API, city));
+            URL url = new URL("https://api.darksky.net/forecast/a51089b1b0c72c20811d13bd44f4af3d/60,30");
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("api_key", API_KEY);
+            connection.setRequestProperty("base_path", API_BASE_PATH);
 
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(connection.getInputStream()));
-
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder json = new StringBuilder(1024);
+
             String tmp;
             while((tmp = reader.readLine()) != null)
                 json.append(tmp).append("\n");
             reader.close();
 
-            JSONObject data = new JSONObject(json.toString());
-
-            if(data.getInt("cod") != 200){
-                return null;
-            }
-
-            return data;
+            data = new JSONObject(json.toString());
+            return "Weather was updated";
         } catch(Exception e) {
             return null;
         }
+    }
+
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+
+        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
 }

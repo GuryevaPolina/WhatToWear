@@ -30,7 +30,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="Санки-Петербургский Политехнический университет Петра Великого"
+        android:text="Санкт-Петербургский Политехнический университет Петра Великого"
         android:textColor="@android:color/holo_orange_light"
         android:textColorLink="@color/colorAccent"
         android:textSize="20sp"
