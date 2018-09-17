@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">WhatToWear</string>
     <string name="place_not_found">Sorry, no weather data found.</string>
+
+    <string name="settings_button_content_description">Settings</string>
+
+    <string name="city">City</string>
+    <string name="temp">Temp</string>
+    <string name="precip">Precip type</string>
 </resources>
