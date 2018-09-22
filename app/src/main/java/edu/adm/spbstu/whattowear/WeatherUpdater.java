@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutionException;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -60,7 +61,9 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
+        Toast toast = Toast.makeText(context, s, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 
     void updateWeather(Context context, String city) {
@@ -72,15 +75,19 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
             e.printStackTrace();
         }
 
+        JSONObject currently;
+        String summary = "", precipType = "";
         try {
-            JSONObject currently = data.getJSONObject("currently");
+            currently = data.getJSONObject("currently");
             String temp = currently.getString("temperature");
             int tempInCelsium = (int) ((Double.valueOf(temp) - 32) / 2.0 * 1.1);
             temperature = tempInCelsium + "°C";
-
-            precip = currently.getString("summary");
+            summary = currently.getString("summary");
+            precipType = " and " + currently.getString("precipType");
         } catch (JSONException e) {
             System.out.println("json decoding error");
         }
+
+        precip = summary + precipType;
     }
 }

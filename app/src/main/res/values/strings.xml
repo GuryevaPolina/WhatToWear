@@ -7,4 +7,13 @@
     <string name="city">City</string>
     <string name="temp">Temp</string>
     <string name="precip">Precip type</string>
+
+    <string-array name="cities">
+        <item>Moscow</item>
+        <item>Saint-Petersburg</item>
+        <item>Volgograd</item>
+        <item>Kaliningrad</item>
+        <item>Vladivostok</item>
+        <item>Samara</item>
+    </string-array>
 </resources>

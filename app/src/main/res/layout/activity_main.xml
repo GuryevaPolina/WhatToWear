@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:background="@drawable/button_shape"
-        android:onClick="startClicked"
+        android:onClick="startButtonClicked"
         android:text="Старт"
         android:textColor="@color/colorPrimaryDark"
         android:visibility="visible"

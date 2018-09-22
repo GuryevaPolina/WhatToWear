@@ -12,8 +12,6 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout constraintLayout;
-    private TextView departmentName;
-    private TextView universityName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         constraintLayout = findViewById(R.id.view);
-        departmentName = findViewById(R.id.departmentName);
-        universityName = findViewById(R.id.universityName);
         constraintLayout.setBackgroundColor(Color.rgb(0,0, 0));
-
     }
 
     public void onTheSiteButtonClicked(View v) {
@@ -32,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void startClicked(View v) {
+    public void startButtonClicked(View v) {
         Intent intent = new Intent(this, ClosetActivity.class);
         startActivity(intent);
     }
