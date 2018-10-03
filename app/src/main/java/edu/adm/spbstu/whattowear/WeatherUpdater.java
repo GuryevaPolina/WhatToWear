@@ -39,7 +39,7 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
     @Override
     protected String doInBackground(String... strings) {
         try {
-            URL url = new URL(API_BASE_PATH + API_KEY + "/" + cityCoordinate);
+            URL url = new URL(API_BASE_PATH + API_KEY + "/" + cityCoordinate + "?lang=ru");
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.setRequestProperty("Accept", "application/json");
 
@@ -66,7 +66,7 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
         toast.show();
     }
 
-    void updateWeather(Context context, String city) {
+    PrecipType updateWeather(Context context, String city) {
         this.context = context;
         cityCoordinate = CityCoordinate.map.get(city);
         try {
@@ -76,18 +76,27 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
         }
 
         JSONObject currently;
-        String summary = "", precipType = "";
         try {
             currently = data.getJSONObject("currently");
             String temp = currently.getString("temperature");
             int tempInCelsium = (int) ((Double.valueOf(temp) - 32) / 2.0 * 1.1);
             temperature = tempInCelsium + "°C";
-            summary = currently.getString("summary");
-            precipType = " and " + currently.getString("precipType");
+            precip = currently.getString("summary");
+
+            if (!currently.getString("precipIntensity").equals("0")) {
+                String precipType = currently.getString("precipType");
+                if (precipType.equals("rain")) {
+                    return PrecipType.RAIN;
+                }
+                if (precipType.equals("snow") || precipType.equals("sleet")) {
+                    return PrecipType.SNOW;
+                }
+
+            }
+            return PrecipType.NONE;
         } catch (JSONException e) {
-            System.out.println("json decoding error");
+            return PrecipType.NONE;
         }
 
-        precip = summary + precipType;
     }
 }

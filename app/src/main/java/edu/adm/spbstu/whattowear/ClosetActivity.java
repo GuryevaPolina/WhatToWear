@@ -8,6 +8,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -34,6 +36,9 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     TextView temperature, precip;
     String currCity = "Moscow";
     boolean isWoman = true;
+
+    ImageView[][] precips = null;
+    int n = 10, m = 30;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -128,8 +133,20 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     void updateWeather() {
+        if (precips != null) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    precips[i][j].clearAnimation();
+                }
+            }
+        }
+
         WeatherUpdater weatherUpdater = new WeatherUpdater();
-        weatherUpdater.updateWeather(this, currCity);
+        switch (weatherUpdater.updateWeather(this, currCity)) {
+            case RAIN: startAnimation(R.drawable.drop); break;
+            case SNOW: startAnimation(R.drawable.snowflake);break;
+            case NONE: break;
+        }
         temperature.setText(weatherUpdater.getTemperature());
         precip.setText(weatherUpdater.getPrecip());
     }
@@ -177,6 +194,36 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+    }
+
+    void startAnimation(int precipDrawable) {
+
+        int screenWidth = getWindowManager().getDefaultDisplay().getWidth();
+        int screenHeight = getWindowManager().getDefaultDisplay().getHeight();
+
+        precips = new ImageView[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                precips[i][j] = new ImageView(this);
+                precips[i][j].setImageResource(precipDrawable);
+                precips[i][j].setLayoutParams(new ConstraintLayout.LayoutParams(10, 40));
+                precips[i][j].setX(j * screenWidth / m + i * 10);
+                precips[i][j].setY(-50);
+
+                constraintLayout.addView(precips[i][j], 0);
+
+                Animation animation = new TranslateAnimation(precips[i][j].getX(),
+                        precips[i][j].getX() + 10,
+                        precips[i][j].getY(),
+                        precips[i][j].getY() + 2 * screenHeight / 3);
+                animation.setDuration(800);
+                animation.setRepeatCount(Animation.INFINITE);
+                animation.setStartOffset(i*500 + j*100);
+
+                precips[i][j].startAnimation(animation);
+            }
+        }
+
     }
 
     @Override
