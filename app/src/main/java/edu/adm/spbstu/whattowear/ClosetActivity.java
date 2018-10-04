@@ -1,15 +1,12 @@
 package edu.adm.spbstu.whattowear;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -29,7 +26,6 @@ import java.util.Date;
 public class ClosetActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     static final String fileName = "user_info";
-
     ConstraintLayout constraintLayout;
     Switch genderSwitch;
     ImageView human;
@@ -37,11 +33,10 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     String currCity = "Moscow";
     boolean isWoman = true;
 
-    ImageView[][] precips = null;
-    int n = 10, m = 30;
+    Animator animator;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weather);
 
@@ -51,6 +46,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         } else {
             getGender();
         }
+
+    //    System.out.println(Locale.getDefault().getDisplayLanguage());
     }
 
 
@@ -133,18 +130,12 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     void updateWeather() {
-        if (precips != null) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    precips[i][j].clearAnimation();
-                }
-            }
-        }
+        animator.stopAnimation();
 
         WeatherUpdater weatherUpdater = new WeatherUpdater();
         switch (weatherUpdater.updateWeather(this, currCity)) {
-            case RAIN: startAnimation(R.drawable.drop); break;
-            case SNOW: startAnimation(R.drawable.snowflake);break;
+            case RAIN: animator.rainAnimation(); break;
+            case SNOW: animator.snowAnimation();break;
             case NONE: break;
         }
         temperature.setText(weatherUpdater.getTemperature());
@@ -194,36 +185,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-    }
 
-    void startAnimation(int precipDrawable) {
-
-        int screenWidth = getWindowManager().getDefaultDisplay().getWidth();
-        int screenHeight = getWindowManager().getDefaultDisplay().getHeight();
-
-        precips = new ImageView[n][m];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                precips[i][j] = new ImageView(this);
-                precips[i][j].setImageResource(precipDrawable);
-                precips[i][j].setLayoutParams(new ConstraintLayout.LayoutParams(10, 40));
-                precips[i][j].setX(j * screenWidth / m + i * 10);
-                precips[i][j].setY(-50);
-
-                constraintLayout.addView(precips[i][j], 0);
-
-                Animation animation = new TranslateAnimation(precips[i][j].getX(),
-                        precips[i][j].getX() + 10,
-                        precips[i][j].getY(),
-                        precips[i][j].getY() + 2 * screenHeight / 3);
-                animation.setDuration(800);
-                animation.setRepeatCount(Animation.INFINITE);
-                animation.setStartOffset(i*500 + j*100);
-
-                precips[i][j].startAnimation(animation);
-            }
-        }
-
+        animator = new Animator(this, constraintLayout);
     }
 
     @Override
