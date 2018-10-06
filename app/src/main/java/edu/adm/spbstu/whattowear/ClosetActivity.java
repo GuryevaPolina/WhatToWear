@@ -29,7 +29,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     ConstraintLayout constraintLayout;
     Switch genderSwitch;
     ImageView human;
-    TextView temperature, precip;
+    TextView temperature, precip, windSpeed;
     String currCity = "Moscow";
     boolean isWoman = true;
 
@@ -129,8 +129,10 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         alert.getWindow().setLayout(600, 1200);
     }
 
+    @SuppressLint("SetTextI18n")
     void updateWeather() {
         animator.stopAnimation();
+        animator.stopCloudsAnimation();
 
         WeatherUpdater weatherUpdater = new WeatherUpdater();
         switch (weatherUpdater.updateWeather(this, currCity)) {
@@ -138,14 +140,18 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
             case SNOW: animator.snowAnimation();break;
             case NONE: break;
         }
-        temperature.setText(weatherUpdater.getTemperature());
+        animator.startCloudsAnimation((int) Float.parseFloat(weatherUpdater.getWindSpeed()));
+
+        temperature.setText(weatherUpdater.getTemperature() + "°C");
         precip.setText(weatherUpdater.getPrecip());
+        windSpeed.setText(weatherUpdater.getWindSpeed() + " м/с");
     }
 
     @SuppressLint("NewApi")
     void loadViews() {
         temperature = findViewById(R.id.temperature);
         precip = findViewById(R.id.precip);
+        windSpeed = findViewById(R.id.windSpeed);
         constraintLayout = findViewById(R.id.weatherView);
         human = findViewById(R.id.human);
         genderSwitch = findViewById(R.id.genderSwitch);

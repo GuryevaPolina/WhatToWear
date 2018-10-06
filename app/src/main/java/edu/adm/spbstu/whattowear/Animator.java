@@ -1,16 +1,17 @@
 package edu.adm.spbstu.whattowear;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.constraint.ConstraintLayout;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 public class Animator {
 
-    private Context context;
+    private Activity activity;
     private ImageView[][] precips = null;
+    private ImageView[] clouds = null;
     private ConstraintLayout constraintLayout;
     private int n = 10, m = 30;
 
@@ -18,11 +19,39 @@ public class Animator {
     private int screenHeight;
 
 
-    Animator(Context context, ConstraintLayout constraintLayout) {
-        this.context = context;
+    Animator(Activity activity, ConstraintLayout constraintLayout) {
+        this.activity = activity;
         this.constraintLayout = constraintLayout;
-        screenWidth = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
-        screenHeight = ((Activity)context).getWindowManager().getDefaultDisplay().getHeight();
+        screenWidth = activity.getWindowManager().getDefaultDisplay().getWidth();
+        screenHeight = activity.getWindowManager().getDefaultDisplay().getHeight();
+    }
+
+    void startCloudsAnimation(int speed) {
+        clouds = new ImageView[2];
+        for (int i = 0; i < clouds.length; i++) {
+            clouds[i] = new ImageView(activity);
+            clouds[i].setImageResource(R.drawable.clouds);
+            clouds[i].setY(0);
+            System.out.println(screenWidth);
+            clouds[i].setX(i * screenWidth / 2);
+
+            constraintLayout.addView(clouds[i], i);
+
+            Animation animation = new TranslateAnimation(clouds[i].getX(), clouds[i].getX() - screenWidth,
+                    clouds[i].getY(), clouds[i].getY());
+            animation.setDuration(100000 / speed);
+            animation.setRepeatCount(Animation.INFINITE);
+            clouds[i].startAnimation(animation);
+        }
+    }
+
+    void stopCloudsAnimation() {
+        if (clouds != null) {
+            for (ImageView cloud : clouds) {
+                cloud.clearAnimation();
+                cloud.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
     void rainAnimation() {
@@ -30,7 +59,7 @@ public class Animator {
         precips = new ImageView[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                precips[i][j] = new ImageView(context);
+                precips[i][j] = new ImageView(activity);
                 precips[i][j].setImageResource(R.drawable.drop);
                 precips[i][j].setLayoutParams(new ConstraintLayout.LayoutParams(10, 40));
                 precips[i][j].setX(j * screenWidth / m + i * 10);
@@ -56,7 +85,7 @@ public class Animator {
         precips = new ImageView[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                precips[i][j] = new ImageView(context);
+                precips[i][j] = new ImageView(activity);
                 precips[i][j].setImageResource(R.drawable.snowflake);
                 precips[i][j].setLayoutParams(new ConstraintLayout.LayoutParams(40, 40));
                 precips[i][j].setX((float) (Math.random() * (screenWidth + 1)));

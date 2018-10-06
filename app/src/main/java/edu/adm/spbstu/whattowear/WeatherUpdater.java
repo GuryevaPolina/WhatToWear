@@ -26,6 +26,7 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
 
     private String temperature;
     private String precip;
+    private String windSpeed;
     private String cityCoordinate;
 
     public String getTemperature() {
@@ -34,6 +35,10 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
 
     public String getPrecip() {
         return precip;
+    }
+
+    public String getWindSpeed() {
+        return windSpeed;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
             reader.close();
 
             data = new JSONObject(json.toString());
-            return "Weather was updated";
+            return "Погода обновлена";
         } catch(Exception e) {
             return null;
         }
@@ -80,8 +85,9 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
             currently = data.getJSONObject("currently");
             String temp = currently.getString("temperature");
             int tempInCelsium = (int) ((Double.valueOf(temp) - 32) / 2.0 * 1.1);
-            temperature = tempInCelsium + "°C";
+            temperature = tempInCelsium + "";
             precip = currently.getString("summary");
+            windSpeed = currently.getString("windSpeed");
 
             if (!currently.getString("precipIntensity").equals("0")) {
                 String precipType = currently.getString("precipType");
