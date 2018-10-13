@@ -30,7 +30,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     Switch genderSwitch;
     ImageView human;
     TextView temperature, precip, windSpeed;
-    String currCity = "Moscow";
+    String currCity;
     boolean isWoman = true;
 
     Animator animator;
@@ -46,10 +46,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         } else {
             getGender();
         }
-
     //    System.out.println(Locale.getDefault().getDisplayLanguage());
     }
-
 
     void getGender() {
         try {
@@ -100,7 +98,6 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         } else {
             fileContent = "city:" + currCity + "; gender: male";
         }
-
         try {
             fos = openFileOutput(fileName, Context.MODE_PRIVATE);
             fos.write(fileContent.getBytes());
