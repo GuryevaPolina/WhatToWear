@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class ClosetActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -134,7 +135,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         });
         AlertDialog alert = builder.create();
         alert.show();
-        alert.getWindow().setLayout(600, 1200);
+        Objects.requireNonNull(alert.getWindow()).setLayout(600, 1200);
     }
 
     @SuppressLint("SetTextI18n")

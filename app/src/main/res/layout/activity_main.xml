@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="Кафедра прикладной математики"
+        android:text="@string/department"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         android:visibility="visible"
@@ -30,7 +30,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="Санкт-Петербургский Политехнический университет Петра Великого"
+        android:text="@string/university"
         android:textColor="@android:color/holo_orange_light"
         android:textColorLink="@color/colorAccent"
         android:textSize="20sp"
@@ -47,7 +47,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_shape"
         android:onClick="onTheSiteButtonClicked"
-        android:text="На сайт"
+        android:text="@string/toSite"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toTopOf="@+id/start"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/button_shape"
         android:onClick="startButtonClicked"
-        android:text="Старт"
+        android:text="@string/start"
         android:textColor="@color/colorPrimaryDark"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,6 +78,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/universityName"
-        app:srcCompat="@drawable/apple" />
+        app:srcCompat="@drawable/apple"
+        android:contentDescription="@string/apple" />
 
 </android.support.constraint.ConstraintLayout>

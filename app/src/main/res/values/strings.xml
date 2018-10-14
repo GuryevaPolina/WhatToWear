@@ -8,6 +8,23 @@
     <string name="temp">Temp</string>
     <string name="precip">Precip type</string>
 
+    <string name="toSite">На сайт</string>
+    <string name="start">Старт</string>
+    <string name="university">Санкт-Петербургский Политехнический университет Петра Великого</string>
+    <string name="department">Кафедра прикладной математики</string>
+    <string name="gender">Пол</string>
+    <string name="girlimage">girlImage</string>
+    <string name="boyimage">boyImage</string>
+    <string name="girl_20_more">girl_20_more</string>
+    <string name="boy_20_more">boy-20_more</string>
+    <string name="girl_10_20">girl_10_20</string>
+    <string name="boy_10_20">boy_10_20</string>
+    <string name="girl_0_10">girl_0_10</string>
+    <string name="boy_0_10">boy_0_10</string>
+    <string name="boy_less_0">boy_less_0</string>
+    <string name="umbrella">umbrella</string>
+    <string name="apple">apple</string>
+
     <string-array name="cities">
         <item>Moscow</item>
         <item>Saint-Petersburg</item>

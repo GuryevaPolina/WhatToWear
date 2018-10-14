@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/weatherView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -89,7 +88,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="first thing"
+            android:text=""
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="second thing"
+            android:text=""
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -114,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="third thing"
+            android:text=""
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -129,7 +128,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginTop="24dp"
-        android:text="F"
+        android:text="@string/gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -143,7 +142,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/citySpinner"
-        app:srcCompat="@drawable/girl" />
+        app:srcCompat="@drawable/girl"
+        android:contentDescription="@string/girlimage" />
 
     <ImageView
         android:id="@+id/boy"
@@ -155,7 +155,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/citySpinner"
-        app:srcCompat="@drawable/boy" />
+        app:srcCompat="@drawable/boy"
+        android:contentDescription="@string/boyimage" />
 
     <ImageView
         android:id="@+id/girl_20_more"
@@ -166,7 +167,8 @@
         app:layout_constraintEnd_toStartOf="@+id/girl"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/girl"
-        app:srcCompat="@drawable/girl_20_more" />
+        app:srcCompat="@drawable/girl_20_more"
+        android:contentDescription="@string/girl_20_more" />
 
     <ImageView
         android:id="@+id/boy_20_more"
@@ -177,7 +179,8 @@
         app:layout_constraintEnd_toStartOf="@+id/boy"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/boy"
-        app:srcCompat="@drawable/boy_20_more" />
+        app:srcCompat="@drawable/boy_20_more"
+        android:contentDescription="@string/boy_20_more" />
 
     <ImageView
         android:id="@+id/girl_10_20"
@@ -188,7 +191,8 @@
         app:layout_constraintEnd_toStartOf="@+id/girl"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toEndOf="@+id/girl"
-        app:srcCompat="@drawable/girl_10_20" />
+        app:srcCompat="@drawable/girl_10_20"
+        android:contentDescription="@string/girl_10_20" />
 
     <ImageView
         android:id="@+id/boy_10_20"
@@ -198,7 +202,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/boy"
         app:layout_constraintEnd_toStartOf="@+id/boy"
         app:layout_constraintStart_toEndOf="@+id/boy"
-        app:srcCompat="@drawable/boy_10_20" />
+        app:srcCompat="@drawable/boy_10_20"
+        android:contentDescription="@string/boy_10_20" />
 
     <ImageView
         android:id="@+id/girl_0_10"
@@ -209,7 +214,8 @@
         app:layout_constraintEnd_toStartOf="@+id/girl"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toEndOf="@+id/girl"
-        app:srcCompat="@drawable/girl_0_10" />
+        app:srcCompat="@drawable/girl_0_10"
+        android:contentDescription="@string/girl_0_10" />
 
     <ImageView
         android:id="@+id/boy_0_10"
@@ -219,7 +225,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/boy"
         app:layout_constraintEnd_toStartOf="@+id/boy"
         app:layout_constraintStart_toEndOf="@+id/boy"
-        app:srcCompat="@drawable/boy_0_10" />
+        app:srcCompat="@drawable/boy_0_10"
+        android:contentDescription="@string/boy_0_10" />
 
     <ImageView
         android:id="@+id/girl_less_0"
@@ -240,7 +247,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/boy"
         app:layout_constraintEnd_toStartOf="@+id/boy"
         app:layout_constraintStart_toEndOf="@+id/boy"
-        app:srcCompat="@drawable/boy_less_0" />
+        app:srcCompat="@drawable/boy_less_0"
+        android:contentDescription="@string/boy_less_0" />
 
     <ImageView
         android:id="@+id/umbrella"
@@ -251,6 +259,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/boy"
         app:layout_constraintStart_toStartOf="@+id/boy"
-        app:srcCompat="@drawable/umbrella" />
+        app:srcCompat="@drawable/umbrella"
+        android:contentDescription="@string/umbrella" />
 
 </android.support.constraint.ConstraintLayout>
