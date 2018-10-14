@@ -28,12 +28,19 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     static final String fileName = "user_info";
     ConstraintLayout constraintLayout;
     Switch genderSwitch;
-    ImageView human;
-    TextView temperature, precip, windSpeed;
+    ImageView girl, boy, girl_more_20_clothes, boy_more_20_clothes,
+                         girl_10_20_clothes, boy_10_20_clothes,
+                         girl_0_10_clothes, boy_0_10_clothes,
+                         girl_less_0_clothes, boy_less_0_clothes,
+                         umbrella;
+    TextView temperature, precip, windSpeed,
+             firstThing, secondThing, thirdThing;
+    PrecipType precipType;
     String currCity;
     boolean isWoman = true;
 
     Animator animator;
+    WeatherUpdater globalWeatherUpdater;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,11 +68,13 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
                         switch (splitByColon[1].trim()) {
                             case "male":
                                 isWoman = false;
-                                human.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.boy));
+                                girl.setVisibility(View.INVISIBLE);
+                                boy.setVisibility(View.VISIBLE);
                                 break;
                             case "female":
                                 isWoman = true;
-                                human.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.girl));
+                                girl.setVisibility(View.VISIBLE);
+                                boy.setVisibility(View.INVISIBLE);
                                 break;
                         }
                         break;
@@ -114,10 +123,12 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         builder.setItems(items, (dialog, which) -> {
             switch (which) {
                 case 0: isWoman = false;
-                    human.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.boy));
+                    girl.setVisibility(View.INVISIBLE);
+                    boy.setVisibility(View.VISIBLE);
                     break;
                 case 1: isWoman = true;
-                    human.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.girl));
+                    girl.setVisibility(View.VISIBLE);
+                    boy.setVisibility(View.INVISIBLE);
                     break;
             }
         });
@@ -130,9 +141,10 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     void updateWeather() {
         animator.stopAnimation();
         animator.stopCloudsAnimation();
-
         WeatherUpdater weatherUpdater = new WeatherUpdater();
-        switch (weatherUpdater.updateWeather(this, currCity)) {
+        globalWeatherUpdater = weatherUpdater;
+        precipType = weatherUpdater.updateWeather(this, currCity);
+        switch (precipType) {
             case RAIN: animator.rainAnimation(); break;
             case SNOW: animator.snowAnimation();break;
             case NONE: break;
@@ -142,6 +154,57 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         temperature.setText(weatherUpdater.getTemperature() + "°C");
         precip.setText(weatherUpdater.getPrecip());
         windSpeed.setText(weatherUpdater.getWindSpeed() + " м/с");
+        updateClothes();
+    }
+
+    void updateClothes() {
+        hideAllClothes();
+        ChoosingClothes choosingClothes = new ChoosingClothes(isWoman, precipType);
+        Clothes[] clothes;
+        String[] clothesLabels;
+        Temperatures temperature;
+        Integer tempInt = Integer.parseInt(globalWeatherUpdater.getTemperature());
+        if (tempInt > 20) {
+            temperature = Temperatures.more_then_twenty;
+        } else if (10 <= tempInt && tempInt <= 20) {
+            temperature = Temperatures.from_ten_to_twenty;
+        } else if (0 <= tempInt && tempInt < 10) {
+            temperature = Temperatures.from_zero_to_ten;
+        } else {
+            temperature = Temperatures.less_than_zero;
+        }
+
+        clothes = choosingClothes.getClothes(temperature);
+        clothesLabels = choosingClothes.getClothesLabels(temperature);
+
+        for (Clothes thing: clothes) {
+            switch (thing) {
+                case umbrella: umbrella.setVisibility(View.VISIBLE); break;
+                case girl_more_20: girl_more_20_clothes.setVisibility(View.VISIBLE); break;
+                case boy_more_20: boy_more_20_clothes.setVisibility(View.VISIBLE); break;
+                case girl_10_20: girl_10_20_clothes.setVisibility(View.VISIBLE); break;
+                case boy_10_20: boy_10_20_clothes.setVisibility(View.VISIBLE); break;
+                case girl_0_10: girl_0_10_clothes.setVisibility(View.VISIBLE); break;
+                case boy_0_10: boy_0_10_clothes.setVisibility(View.VISIBLE); break;
+                case girl_less_0: girl_less_0_clothes.setVisibility(View.VISIBLE); break;
+                case boy_less_0: boy_less_0_clothes.setVisibility(View.VISIBLE); break;
+            }
+        }
+        firstThing.setText(clothesLabels[0]);
+        secondThing.setText(clothesLabels[1]);
+        thirdThing.setText(clothesLabels[2]);
+    }
+
+    void hideAllClothes() {
+        girl_more_20_clothes.setVisibility(View.INVISIBLE);
+        boy_more_20_clothes.setVisibility(View.INVISIBLE);
+        girl_10_20_clothes.setVisibility(View.INVISIBLE);
+        boy_10_20_clothes.setVisibility(View.INVISIBLE);
+        girl_0_10_clothes.setVisibility(View.INVISIBLE);
+        boy_0_10_clothes.setVisibility(View.INVISIBLE);
+        girl_less_0_clothes.setVisibility(View.INVISIBLE);
+        boy_less_0_clothes.setVisibility(View.INVISIBLE);
+        umbrella.setVisibility(View.INVISIBLE);
     }
 
     @SuppressLint("NewApi")
@@ -150,18 +213,34 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         precip = findViewById(R.id.precip);
         windSpeed = findViewById(R.id.windSpeed);
         constraintLayout = findViewById(R.id.weatherView);
-        human = findViewById(R.id.human);
+        girl = findViewById(R.id.girl);
+        boy = findViewById(R.id.boy);
         genderSwitch = findViewById(R.id.genderSwitch);
+
+        girl_more_20_clothes = findViewById(R.id.girl_20_more);
+        boy_more_20_clothes = findViewById(R.id.boy_20_more);
+        girl_10_20_clothes = findViewById(R.id.girl_10_20);
+        boy_10_20_clothes = findViewById(R.id.boy_10_20);
+        girl_0_10_clothes = findViewById(R.id.girl_0_10);
+        boy_0_10_clothes = findViewById(R.id.boy_0_10);
+        girl_less_0_clothes = findViewById(R.id.girl_less_0);
+        boy_less_0_clothes = findViewById(R.id.boy_less_0);
+        umbrella = findViewById(R.id.umbrella);
+
+        firstThing = findViewById(R.id.first);
+        secondThing = findViewById(R.id.second);
+        thirdThing = findViewById(R.id.third);
 
         genderSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             isWoman = !isWoman;
             if (isWoman) {
-                human.setImageDrawable(ContextCompat.getDrawable(
-                        ClosetActivity.this.getApplicationContext(), R.drawable.girl));
+                girl.setVisibility(View.VISIBLE);
+                boy.setVisibility(View.INVISIBLE);
             } else {
-                human.setImageDrawable(ContextCompat.getDrawable(
-                        ClosetActivity.this.getApplicationContext(), R.drawable.boy));
+                girl.setVisibility(View.INVISIBLE);
+                boy.setVisibility(View.VISIBLE);
             }
+            updateClothes();
         });
 
         Date currentTime = Calendar.getInstance().getTime();

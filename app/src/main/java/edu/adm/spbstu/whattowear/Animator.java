@@ -27,6 +27,11 @@ public class Animator {
     }
 
     void startCloudsAnimation(int speed) {
+
+        if (speed == 0) {
+            speed = 1;
+        }
+
         clouds = new ImageView[2];
         for (int i = 0; i < clouds.length; i++) {
             clouds[i] = new ImageView(activity);

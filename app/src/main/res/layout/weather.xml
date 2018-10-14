@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/human">
+        app:layout_constraintTop_toBottomOf="@+id/girl">
 
         <TextView
             android:id="@+id/temperature"
@@ -71,13 +71,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/human"
+        app:layout_constraintEnd_toStartOf="@+id/girl"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -85,7 +86,7 @@
         <TextView
             android:id="@+id/first"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="first thing"
@@ -133,10 +134,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/human"
+        android:id="@+id/girl"
         android:layout_width="150dp"
         android:layout_height="350dp"
         android:layout_marginTop="24dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -144,14 +146,111 @@
         app:srcCompat="@drawable/girl" />
 
     <ImageView
+        android:id="@+id/boy"
+        android:layout_width="150dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="24dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/citySpinner"
+        app:srcCompat="@drawable/boy" />
+
+    <ImageView
         android:id="@+id/girl_20_more"
         android:layout_width="90dp"
         android:layout_height="245dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/human"
-        app:layout_constraintEnd_toStartOf="@+id/human"
+        app:layout_constraintBottom_toBottomOf="@+id/girl"
+        app:layout_constraintEnd_toStartOf="@+id/girl"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/human"
+        app:layout_constraintStart_toEndOf="@+id/girl"
         app:srcCompat="@drawable/girl_20_more" />
+
+    <ImageView
+        android:id="@+id/boy_20_more"
+        android:layout_width="90dp"
+        android:layout_height="252dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/boy"
+        app:layout_constraintEnd_toStartOf="@+id/boy"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/boy"
+        app:srcCompat="@drawable/boy_20_more" />
+
+    <ImageView
+        android:id="@+id/girl_10_20"
+        android:layout_width="130dp"
+        android:layout_height="247dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/girl"
+        app:layout_constraintEnd_toStartOf="@+id/girl"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toEndOf="@+id/girl"
+        app:srcCompat="@drawable/girl_10_20" />
+
+    <ImageView
+        android:id="@+id/boy_10_20"
+        android:layout_width="130dp"
+        android:layout_height="255dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/boy"
+        app:layout_constraintEnd_toStartOf="@+id/boy"
+        app:layout_constraintStart_toEndOf="@+id/boy"
+        app:srcCompat="@drawable/boy_10_20" />
+
+    <ImageView
+        android:id="@+id/girl_0_10"
+        android:layout_width="132dp"
+        android:layout_height="257dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/girl"
+        app:layout_constraintEnd_toStartOf="@+id/girl"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toEndOf="@+id/girl"
+        app:srcCompat="@drawable/girl_0_10" />
+
+    <ImageView
+        android:id="@+id/boy_0_10"
+        android:layout_width="140dp"
+        android:layout_height="255dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/boy"
+        app:layout_constraintEnd_toStartOf="@+id/boy"
+        app:layout_constraintStart_toEndOf="@+id/boy"
+        app:srcCompat="@drawable/boy_0_10" />
+
+    <ImageView
+        android:id="@+id/girl_less_0"
+        android:layout_width="150dp"
+        android:layout_height="365dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/girl"
+        app:layout_constraintEnd_toStartOf="@+id/girl"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toEndOf="@+id/girl"
+        app:srcCompat="@drawable/girl_less_0" />
+
+    <ImageView
+        android:id="@+id/boy_less_0"
+        android:layout_width="150dp"
+        android:layout_height="375dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/boy"
+        app:layout_constraintEnd_toStartOf="@+id/boy"
+        app:layout_constraintStart_toEndOf="@+id/boy"
+        app:srcCompat="@drawable/boy_less_0" />
+
+    <ImageView
+        android:id="@+id/umbrella"
+        android:layout_width="130dp"
+        android:layout_height="203dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginStart="68dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/boy"
+        app:layout_constraintStart_toStartOf="@+id/boy"
+        app:srcCompat="@drawable/umbrella" />
 
 </android.support.constraint.ConstraintLayout>
