@@ -33,7 +33,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
                          girl_10_20_clothes, boy_10_20_clothes,
                          girl_0_10_clothes, boy_0_10_clothes,
                          girl_less_0_clothes, boy_less_0_clothes,
-                         umbrella;
+                         umbrella, cap_boy, cap_girl;
     TextView temperature, precip, windSpeed,
              firstThing, secondThing, thirdThing;
     PrecipType precipType;
@@ -165,11 +165,13 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         String[] clothesLabels;
         Temperatures temperature;
         Integer tempInt = Integer.parseInt(globalWeatherUpdater.getTemperature());
-        if (tempInt > 20) {
+        if (tempInt > 25) {
+            temperature = Temperatures.more_then_twenty_five;
+        } else if (tempInt > 20) {
             temperature = Temperatures.more_then_twenty;
         } else if (10 <= tempInt && tempInt <= 20) {
             temperature = Temperatures.from_ten_to_twenty;
-        } else if (0 <= tempInt && tempInt < 10) {
+        } else if (0 < tempInt && tempInt < 10) {
             temperature = Temperatures.from_zero_to_ten;
         } else {
             temperature = Temperatures.less_than_zero;
@@ -189,6 +191,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
                 case boy_0_10: boy_0_10_clothes.setVisibility(View.VISIBLE); break;
                 case girl_less_0: girl_less_0_clothes.setVisibility(View.VISIBLE); break;
                 case boy_less_0: boy_less_0_clothes.setVisibility(View.VISIBLE); break;
+                case cap_boy: cap_boy.setVisibility(View.VISIBLE);
+                case cap_girl: cap_girl.setVisibility(View.VISIBLE);
             }
         }
         firstThing.setText(clothesLabels[0]);
@@ -206,6 +210,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         girl_less_0_clothes.setVisibility(View.INVISIBLE);
         boy_less_0_clothes.setVisibility(View.INVISIBLE);
         umbrella.setVisibility(View.INVISIBLE);
+        cap_boy.setVisibility(View.INVISIBLE);
+        cap_girl.setVisibility(View.INVISIBLE);
     }
 
     @SuppressLint("NewApi")
@@ -227,6 +233,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         girl_less_0_clothes = findViewById(R.id.girl_less_0);
         boy_less_0_clothes = findViewById(R.id.boy_less_0);
         umbrella = findViewById(R.id.umbrella);
+        cap_boy = findViewById(R.id.cap_boy);
+        cap_girl = findViewById(R.id.cap_girl);
 
         firstThing = findViewById(R.id.first);
         secondThing = findViewById(R.id.second);

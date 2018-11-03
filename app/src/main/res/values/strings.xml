@@ -24,6 +24,9 @@
     <string name="boy_less_0">boy_less_0</string>
     <string name="umbrella">umbrella</string>
     <string name="apple">apple</string>
+    <string name="girl_less_0">girl_less_0</string>
+    <string name="cap_boy">cap_boy</string>
+    <string name="cap_girl">cap_girl</string>
 
     <string-array name="cities">
         <item>Moscow</item>
