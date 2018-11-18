@@ -73,7 +73,7 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
 
     PrecipType updateWeather(Context context, String city) {
         this.context = context;
-        cityCoordinate = CityCoordinate.map.get(city);
+        cityCoordinate = new CityCoordinate(context).getCoordinate(city);
         try {
             execute().get();
         } catch (ExecutionException | InterruptedException e) {

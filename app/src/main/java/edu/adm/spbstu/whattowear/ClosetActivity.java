@@ -11,9 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,13 +20,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 
 public class ClosetActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     static final String fileName = "user_info";
     ConstraintLayout constraintLayout;
-    Switch genderSwitch;
     ImageView girl, boy, girl_more_20_clothes, boy_more_20_clothes,
                          girl_10_20_clothes, boy_10_20_clothes,
                          girl_0_10_clothes, boy_0_10_clothes,
@@ -38,6 +34,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
              firstThing, secondThing, thirdThing;
     PrecipType precipType;
     String currCity;
+    CityCoordinate cityCoordinate;
     boolean isWoman = true;
 
     Animator animator;
@@ -54,7 +51,6 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         } else {
             getGender();
         }
-    //    System.out.println(Locale.getDefault().getDisplayLanguage());
     }
 
     void getGender() {
@@ -119,8 +115,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
 
     void showGenderAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose gender, please");
-        String[] items = {"male", "female"};
+        builder.setTitle(R.string.chooseGender);
+        String[] items = {getString(R.string.male), getString(R.string.female)};
         builder.setItems(items, (dialog, which) -> {
             switch (which) {
                 case 0: isWoman = false;
@@ -135,7 +131,6 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         });
         AlertDialog alert = builder.create();
         alert.show();
-        Objects.requireNonNull(alert.getWindow()).setLayout(600, 1200);
     }
 
     @SuppressLint("SetTextI18n")
@@ -160,7 +155,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
 
     void updateClothes() {
         hideAllClothes();
-        ChoosingClothes choosingClothes = new ChoosingClothes(isWoman, precipType);
+        ChoosingClothes choosingClothes = new ChoosingClothes(isWoman, precipType, this);
         Clothes[] clothes;
         String[] clothesLabels;
         Temperatures temperature;
@@ -216,13 +211,13 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
 
     @SuppressLint("NewApi")
     void loadViews() {
+        cityCoordinate = new CityCoordinate(this);
         temperature = findViewById(R.id.temperature);
         precip = findViewById(R.id.precip);
         windSpeed = findViewById(R.id.windSpeed);
         constraintLayout = findViewById(R.id.weatherView);
         girl = findViewById(R.id.girl);
         boy = findViewById(R.id.boy);
-        genderSwitch = findViewById(R.id.genderSwitch);
 
         girl_more_20_clothes = findViewById(R.id.girl_20_more);
         boy_more_20_clothes = findViewById(R.id.boy_20_more);
@@ -239,18 +234,6 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         firstThing = findViewById(R.id.first);
         secondThing = findViewById(R.id.second);
         thirdThing = findViewById(R.id.third);
-
-        genderSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            isWoman = !isWoman;
-            if (isWoman) {
-                girl.setVisibility(View.VISIBLE);
-                boy.setVisibility(View.INVISIBLE);
-            } else {
-                girl.setVisibility(View.INVISIBLE);
-                boy.setVisibility(View.VISIBLE);
-            }
-            updateClothes();
-        });
 
         Date currentTime = Calendar.getInstance().getTime();
         switch (currentTime.getMonth()) {
@@ -269,7 +252,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
             default: break;
         }
 
-        ArrayList<String> list = new ArrayList<>(CityCoordinate.map.keySet());
+        ArrayList<String> list = cityCoordinate.getCities();
         Spinner spinner = findViewById(R.id.citySpinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 R.layout.custom_spinner_item, list);

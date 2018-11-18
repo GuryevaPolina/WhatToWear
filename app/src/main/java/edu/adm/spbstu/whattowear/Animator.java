@@ -44,7 +44,7 @@ public class Animator {
 
             Animation animation = new TranslateAnimation(clouds[i].getX(), clouds[i].getX() - screenWidth,
                     clouds[i].getY(), clouds[i].getY());
-            animation.setDuration(100000 / speed);
+            animation.setDuration(60000 / speed);
             animation.setRepeatCount(Animation.INFINITE);
             clouds[i].startAnimation(animation);
         }
