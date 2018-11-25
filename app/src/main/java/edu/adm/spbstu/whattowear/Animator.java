@@ -86,7 +86,12 @@ public class Animator {
 
     }
 
-    void snowAnimation() {
+    void snowAnimation(int speed) {
+
+        if (speed == 0){
+            speed = 1;
+        }
+
         precips = new ImageView[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -102,7 +107,7 @@ public class Animator {
                         precips[i][j].getX() + 10,
                         precips[i][j].getY(),
                         precips[i][j].getY() + 2 * screenHeight / 3);
-                animation.setDuration(10000);
+                animation.setDuration(10000 / speed);
                 animation.setRepeatCount(Animation.INFINITE);
                 animation.setStartOffset(i*500 + j*100);
 

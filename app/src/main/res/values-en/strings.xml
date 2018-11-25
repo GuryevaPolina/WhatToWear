@@ -60,4 +60,6 @@
     <string name="khabarovsk">Khabarovsk</string>
     <string name="chelyabinsk">Chelyabinsk</string>
 
+    <string name="noInternet">No internet connection</string>
+
 </resources>

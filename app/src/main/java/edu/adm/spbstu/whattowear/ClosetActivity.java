@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -140,12 +142,13 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         WeatherUpdater weatherUpdater = new WeatherUpdater();
         globalWeatherUpdater = weatherUpdater;
         precipType = weatherUpdater.updateWeather(this, currCity);
+        int speed = (int) Float.parseFloat(weatherUpdater.getWindSpeed());
         switch (precipType) {
             case RAIN: animator.rainAnimation(); break;
-            case SNOW: animator.snowAnimation();break;
+            case SNOW: animator.snowAnimation(speed);break;
             case NONE: break;
         }
-        animator.startCloudsAnimation((int) Float.parseFloat(weatherUpdater.getWindSpeed()));
+        animator.startCloudsAnimation(speed);
 
         temperature.setText(weatherUpdater.getTemperature() + "°C");
         precip.setText(weatherUpdater.getPrecip());
@@ -266,7 +269,13 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         currCity = parent.getItemAtPosition(position).toString();
-        updateWeather();
+
+        if (MainActivity.isConnectingToInternet(this)) {
+            updateWeather();
+        } else {
+            Toast toast = Toast.makeText(this, R.string.noInternet, Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     @Override

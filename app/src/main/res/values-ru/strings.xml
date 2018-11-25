@@ -59,4 +59,5 @@
     <string name="kislovodsk">Кисловодск</string>
     <string name="khabarovsk">Хабаровск</string>
     <string name="chelyabinsk">Челябинск</string>
+    <string name="noInternet">Отсутствует подключение к интернету</string>
 </resources>
