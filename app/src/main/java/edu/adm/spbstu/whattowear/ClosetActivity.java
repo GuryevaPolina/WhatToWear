@@ -31,7 +31,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
                          girl_10_20_clothes, boy_10_20_clothes,
                          girl_0_10_clothes, boy_0_10_clothes,
                          girl_less_0_clothes, boy_less_0_clothes,
-                         umbrella, cap_boy, cap_girl;
+                         girl_umbrella, boy_umbrella, cap_boy, cap_girl;
     TextView temperature, precip, windSpeed,
              firstThing, secondThing, thirdThing;
     PrecipType precipType;
@@ -180,7 +180,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
 
         for (Clothes thing: clothes) {
             switch (thing) {
-                case umbrella: umbrella.setVisibility(View.VISIBLE); break;
+                case boy_umbrella: boy_umbrella.setVisibility(View.VISIBLE);
+                case girl_umbrella: girl_umbrella.setVisibility(View.VISIBLE); break;
                 case girl_more_20: girl_more_20_clothes.setVisibility(View.VISIBLE); break;
                 case boy_more_20: boy_more_20_clothes.setVisibility(View.VISIBLE); break;
                 case girl_10_20: girl_10_20_clothes.setVisibility(View.VISIBLE); break;
@@ -207,7 +208,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         boy_0_10_clothes.setVisibility(View.INVISIBLE);
         girl_less_0_clothes.setVisibility(View.INVISIBLE);
         boy_less_0_clothes.setVisibility(View.INVISIBLE);
-        umbrella.setVisibility(View.INVISIBLE);
+        boy_umbrella.setVisibility(View.INVISIBLE);
+        girl_umbrella.setVisibility(View.INVISIBLE);
         cap_boy.setVisibility(View.INVISIBLE);
         cap_girl.setVisibility(View.INVISIBLE);
     }
@@ -230,7 +232,9 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         boy_0_10_clothes = findViewById(R.id.boy_0_10);
         girl_less_0_clothes = findViewById(R.id.girl_less_0);
         boy_less_0_clothes = findViewById(R.id.boy_less_0);
-        umbrella = findViewById(R.id.umbrella);
+        girl_umbrella = findViewById(R.id.girl_umbrella);
+        boy_umbrella = findViewById(R.id.boy_umbrella);
+
         cap_boy = findViewById(R.id.cap_boy);
         cap_girl = findViewById(R.id.cap_girl);
 

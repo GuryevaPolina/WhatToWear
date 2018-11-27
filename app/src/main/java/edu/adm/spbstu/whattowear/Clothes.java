@@ -10,7 +10,8 @@ public enum Clothes {
     boy_0_10,
     boy_less_0,
     boots,
-    umbrella,
+    girl_umbrella,
+    boy_umbrella,
     cap_girl,
     cap_boy
 }

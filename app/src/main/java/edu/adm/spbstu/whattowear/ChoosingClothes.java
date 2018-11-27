@@ -36,11 +36,11 @@ public class ChoosingClothes {
         if (isWoman) {
             switch (precip) {
                 case RAIN:
-                    clothesMap.put(Temperatures.more_then_twenty_five, new Clothes[]{Clothes.girl_more_20, Clothes.umbrella});
-                    clothesMap.put(Temperatures.more_then_twenty, new Clothes[]{Clothes.girl_more_20, Clothes.umbrella});
-                    clothesMap.put(Temperatures.from_ten_to_twenty, new Clothes[]{Clothes.girl_10_20, Clothes.boots, Clothes.umbrella});
-                    clothesMap.put(Temperatures.from_zero_to_ten, new Clothes[]{Clothes.girl_0_10, Clothes.boots, Clothes.umbrella});
-                    clothesMap.put(Temperatures.less_than_zero, new Clothes[]{Clothes.girl_less_0, Clothes.boots, Clothes.umbrella});
+                    clothesMap.put(Temperatures.more_then_twenty_five, new Clothes[]{Clothes.girl_more_20, Clothes.girl_umbrella});
+                    clothesMap.put(Temperatures.more_then_twenty, new Clothes[]{Clothes.girl_more_20, Clothes.girl_umbrella});
+                    clothesMap.put(Temperatures.from_ten_to_twenty, new Clothes[]{Clothes.girl_10_20, Clothes.boots, Clothes.girl_umbrella});
+                    clothesMap.put(Temperatures.from_zero_to_ten, new Clothes[]{Clothes.girl_0_10, Clothes.boots, Clothes.girl_umbrella});
+                    clothesMap.put(Temperatures.less_than_zero, new Clothes[]{Clothes.girl_less_0, Clothes.boots, Clothes.girl_umbrella});
 
                     labelMap.put(Temperatures.more_then_twenty_five, new String[]{shorts, tShirt, umbrella});
                     labelMap.put(Temperatures.more_then_twenty, new String[]{shorts, tShirt, umbrella});
@@ -67,11 +67,11 @@ public class ChoosingClothes {
         } else { // is man
             switch (precip) {
                 case RAIN:
-                    clothesMap.put(Temperatures.more_then_twenty_five, new Clothes[]{Clothes.boy_more_20, Clothes.umbrella});
-                    clothesMap.put(Temperatures.more_then_twenty, new Clothes[]{Clothes.boy_more_20, Clothes.umbrella});
-                    clothesMap.put(Temperatures.from_ten_to_twenty, new Clothes[]{Clothes.boy_10_20, Clothes.boots, Clothes.umbrella});
-                    clothesMap.put(Temperatures.from_zero_to_ten, new Clothes[]{Clothes.boy_0_10, Clothes.boots, Clothes.umbrella});
-                    clothesMap.put(Temperatures.less_than_zero, new Clothes[]{Clothes.boy_less_0, Clothes.boots, Clothes.umbrella});
+                    clothesMap.put(Temperatures.more_then_twenty_five, new Clothes[]{Clothes.boy_more_20, Clothes.girl_umbrella});
+                    clothesMap.put(Temperatures.more_then_twenty, new Clothes[]{Clothes.boy_more_20, Clothes.girl_umbrella});
+                    clothesMap.put(Temperatures.from_ten_to_twenty, new Clothes[]{Clothes.boy_10_20, Clothes.boots, Clothes.girl_umbrella});
+                    clothesMap.put(Temperatures.from_zero_to_ten, new Clothes[]{Clothes.boy_0_10, Clothes.boots, Clothes.girl_umbrella});
+                    clothesMap.put(Temperatures.less_than_zero, new Clothes[]{Clothes.boy_less_0, Clothes.boots, Clothes.girl_umbrella});
 
                     labelMap.put(Temperatures.more_then_twenty_five, new String[]{shorts, tShirt, umbrella});
                     labelMap.put(Temperatures.more_then_twenty, new String[]{shorts, tShirt, umbrella});
