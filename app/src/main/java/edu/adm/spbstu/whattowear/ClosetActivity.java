@@ -37,7 +37,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
     PrecipType precipType;
     String currCity;
     CityCoordinate cityCoordinate;
-    boolean isWoman = true;
+    boolean isWoman = false;
 
     Animator animator;
     WeatherUpdater globalWeatherUpdater;
@@ -234,7 +234,6 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         boy_less_0_clothes = findViewById(R.id.boy_less_0);
         girl_umbrella = findViewById(R.id.girl_umbrella);
         boy_umbrella = findViewById(R.id.boy_umbrella);
-
         cap_boy = findViewById(R.id.cap_boy);
         cap_girl = findViewById(R.id.cap_girl);
 
