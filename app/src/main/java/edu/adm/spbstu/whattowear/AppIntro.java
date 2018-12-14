@@ -8,6 +8,8 @@ import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
 import android.util.*;
 import android.net.*;
+import android.view.View;
+
 import java.io.*;
 
 
@@ -154,12 +156,11 @@ public class AppIntro
 
       Resources res 		= ctx.getResources();
     String strPackage 	= ctx.getPackageName();
-    m_strDepth 			= res.getString(res.getIdentifier("str_depth", "string", strPackage ));
-    m_strUniversity1 	= res.getString(res.getIdentifier("str_university1", "string", strPackage ));
-    m_strUniversity2 	= res.getString(res.getIdentifier("str_university2", "string", strPackage ));
-    m_strWeb 			= res.getString(res.getIdentifier("str_toweb", "string", strPackage ));
-    m_strStart 			= res.getString(res.getIdentifier("str_start", "string", strPackage ));
-    m_strAmdUrl   = res.getString(res.getIdentifier("str_amd_url", "string", strPackage ));
+    m_strDepth = res.getString(res.getIdentifier("department", "string", strPackage));
+    m_strUniversity1 	= res.getString(res.getIdentifier("university", "string", strPackage ));
+    m_strUniversity2 	= res.getString(res.getIdentifier("department", "string", strPackage ));
+    m_strWeb 			= res.getString(res.getIdentifier("toSite", "string", strPackage ));
+    m_strStart 			= res.getString(res.getIdentifier("start", "string", strPackage ));
 
     if ((TIME_LEAF & (TIME_LEAF - 1)) != 0)
     {
@@ -784,7 +785,7 @@ public class AppIntro
 
     if (m_rectBtnStart.contains(x,  y))
     {
-      m_ctx.setView(MainActivity.VIEW_GAME);
+      m_ctx.startButtonClicked(null);
       return false;
     }
 
@@ -793,7 +794,7 @@ public class AppIntro
       if (m_rectBtnWeb.contains(x,  y))
       {
         // go to web
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(m_strAmdUrl));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://amd.spbstu.ru"));
         m_ctx.startActivity(browserIntent);
         return false;
       }

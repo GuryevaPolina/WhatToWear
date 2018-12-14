@@ -3,16 +3,13 @@ package edu.adm.spbstu.whattowear;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 
 import java.util.Locale;
 
@@ -33,17 +30,34 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+//
+//        if (!isConnectingToInternet(this)) {
+//            Button onTheSiteButton = findViewById(R.id.onTheSite);
+//            onTheSiteButton.setBackgroundColor(Color.GRAY);
+//            onTheSiteButton.setEnabled(false);
+//        }
+//
+//        ConstraintLayout constraintLayout = findViewById(R.id.view);
+//        constraintLayout.setBackgroundColor(Color.rgb(0,0, 0));
+//
 
-        if (!isConnectingToInternet(this)) {
-            Button onTheSiteButton = findViewById(R.id.onTheSite);
-            onTheSiteButton.setBackgroundColor(Color.GRAY);
-            onTheSiteButton.setEnabled(false);
-        }
-
-        ConstraintLayout constraintLayout = findViewById(R.id.view);
-        constraintLayout.setBackgroundColor(Color.rgb(0,0, 0));
+//        super.onCreate(savedInstanceState);
+//        // Detect language
+//        String strLang = Locale.getDefault().getDisplayLanguage();
+//        int language;
+//        if (strLang.equalsIgnoreCase("english")) {
+//            language = AppIntro.LANGUAGE_ENG;
+//        } else if (strLang.equalsIgnoreCase("русский")) {
+//            language = AppIntro.LANGUAGE_RUS;
+//        } else {
+//            language = AppIntro.LANGUAGE_UNKNOWN;
+//
+//        }
+//
+//        ConstraintLayout constraintLayout = findViewById(R.id.view);
+//        constraintLayout.setBackgroundColor(Color.rgb(0,0, 0));
 
 
         super.onCreate(savedInstanceState);
@@ -71,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
+
     public void setView(int viewID)
     {
         if (m_viewCur == viewID) {
@@ -83,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             m_viewIntro = new ViewIntro(this);
             setContentView(m_viewIntro);
         }
+
     }
 
     public void onTheSiteButtonClicked(View v) {
@@ -108,5 +124,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             touchType = AppIntro.TOUCH_UP;
 
         return m_viewCur != VIEW_INTRO || m_viewIntro.onTouch(x, y, touchType);
+    }
+
+
+    protected void onResume()
+    {
+        super.onResume();
+        if (m_viewCur == VIEW_INTRO)
+            m_viewIntro.start();
+
     }
 }
