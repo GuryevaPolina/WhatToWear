@@ -28,11 +28,12 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:weightSum="2"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/citySpinner">
 
@@ -112,8 +113,8 @@
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@id/girl_less_0"
                     app:layout_constraintEnd_toEndOf="@id/girl_less_0"
-                    app:layout_constraintStart_toStartOf="@id/girl_less_0"
                     app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/girl_less_0"
                     app:srcCompat="@drawable/girl" />
 
                 <ImageView
@@ -123,9 +124,9 @@
                     android:layout_marginTop="24dp"
                     android:contentDescription="@string/boyimage"
                     android:visibility="invisible"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintBottom_toBottomOf="@+id/boy_less_0"
                     app:layout_constraintEnd_toStartOf="@+id/boy_less_0"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/boy_less_0"
                     app:srcCompat="@drawable/boy" />
 

@@ -1,11 +1,13 @@
 package edu.adm.spbstu.whattowear;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Point;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -214,6 +216,43 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         cap_girl.setVisibility(View.INVISIBLE);
     }
 
+    void resizeImageView(ImageView imageView, float coef) {
+        int height = imageView.getLayoutParams().height;
+        int width = imageView.getLayoutParams().width;
+
+        imageView.getLayoutParams().height = (int) (height * coef);
+        imageView.getLayoutParams().width = (int) (width * coef);
+        imageView.requestLayout();
+    }
+
+    void resize() {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        int girlHeight = girl.getLayoutParams().height;
+        float coef = (float)size.y / (3.0f * (float)girlHeight);
+
+        resizeImageView(girl, coef);
+        resizeImageView(girl_more_20_clothes, coef);
+        resizeImageView(girl_10_20_clothes, coef);
+        resizeImageView(girl_0_10_clothes, coef);
+        resizeImageView(girl_less_0_clothes, coef);
+        resizeImageView(girl_umbrella, coef);
+        resizeImageView(cap_girl, coef);
+
+        int boyHeight = boy.getLayoutParams().height;
+        coef = (float) size.y / (3.0f * (float)boyHeight);
+
+        resizeImageView(boy, coef);
+        resizeImageView(boy_more_20_clothes, coef);
+        resizeImageView(boy_10_20_clothes, coef);
+        resizeImageView(boy_0_10_clothes, coef);
+        resizeImageView(boy_less_0_clothes, coef);
+        resizeImageView(boy_umbrella, coef);
+        resizeImageView(cap_boy, coef);
+    }
+
     @SuppressLint("NewApi")
     void loadViews() {
         cityCoordinate = new CityCoordinate(this);
@@ -267,6 +306,8 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         spinner.setOnItemSelectedListener(this);
 
         animator = new Animator(this, constraintLayout);
+
+        resize();
     }
 
     @Override
