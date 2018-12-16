@@ -231,7 +231,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         display.getSize(size);
 
         int girlHeight = girl.getLayoutParams().height;
-        float coef = (float)size.y / (3.0f * (float)girlHeight);
+        float coef = (float)size.y / (2.5f * (float)girlHeight);
 
         resizeImageView(girl, coef);
         resizeImageView(girl_more_20_clothes, coef);
@@ -242,7 +242,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
         resizeImageView(cap_girl, coef);
 
         int boyHeight = boy.getLayoutParams().height;
-        coef = (float) size.y / (3.0f * (float)boyHeight);
+        coef = (float) size.y / (2.5f * (float)boyHeight);
 
         resizeImageView(boy, coef);
         resizeImageView(boy_more_20_clothes, coef);

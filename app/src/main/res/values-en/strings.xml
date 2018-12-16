@@ -5,7 +5,8 @@
     <string name="precip">Precip</string>
     <string name="toSite">To web site</string>
     <string name="start">Start</string>
-    <string name="university">Peter the Great St. Petersburg Polytechnic University</string>
+    <string name="university1">Peter the Great St. Petersburg</string>
+    <string name="university2"> Polytechnic University</string>
     <string name="department">Applied Math Department</string>
     <string name="gender">Gender</string>
     <string name="chooseGender">Choose gender, please:</string>

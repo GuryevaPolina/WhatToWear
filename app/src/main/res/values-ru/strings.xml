@@ -5,7 +5,8 @@
     <string name="precip">Осадки</string>
     <string name="toSite">На сайт</string>
     <string name="start">Старт</string>
-    <string name="university">Санкт-Петербургский Политехнический университет Петра Великого</string>
+    <string name="university1">Санкт-Петербургский Политехнический</string>
+    <string name="university2">университет Петра Великого</string>
     <string name="department">Кафедра прикладной математики</string>
     <string name="gender">Пол</string>
     <string name="girlimage">girlImage</string>

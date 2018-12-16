@@ -157,8 +157,8 @@ public class AppIntro
       Resources res 		= ctx.getResources();
     String strPackage 	= ctx.getPackageName();
     m_strDepth = res.getString(res.getIdentifier("department", "string", strPackage));
-    m_strUniversity1 	= res.getString(res.getIdentifier("university", "string", strPackage ));
-    m_strUniversity2 	= res.getString(res.getIdentifier("department", "string", strPackage ));
+    m_strUniversity1 	= res.getString(res.getIdentifier("university1", "string", strPackage ));
+    m_strUniversity2 	= res.getString(res.getIdentifier("university2", "string", strPackage ));
     m_strWeb 			= res.getString(res.getIdentifier("toSite", "string", strPackage ));
     m_strStart 			= res.getString(res.getIdentifier("start", "string", strPackage ));
 
