@@ -132,6 +132,7 @@ public class ClosetActivity extends AppCompatActivity implements AdapterView.OnI
                     boy.setVisibility(View.INVISIBLE);
                     break;
             }
+            updateClothes();
         });
         AlertDialog alert = builder.create();
         alert.show();
