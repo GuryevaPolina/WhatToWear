@@ -61,4 +61,6 @@
     <string name="khabarovsk">Хабаровск</string>
     <string name="chelyabinsk">Челябинск</string>
     <string name="noInternet">Отсутствует подключение к интернету</string>
+    <string name="weatherWasUpdated">Погода обновлена</string>
+
 </resources>

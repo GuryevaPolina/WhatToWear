@@ -6,7 +6,8 @@
     <string name="precip">" "</string>
     <string name="toSite">" "</string>
     <string name="start">" "</string>
-    <string name="university">" "</string>
+    <string name="university1">" "</string>
+    <string name="university2">" "</string>
     <string name="department">" "</string>
     <string name="gender">" "</string>
     <string name="girlimage">" "</string>

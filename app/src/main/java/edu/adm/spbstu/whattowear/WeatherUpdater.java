@@ -57,7 +57,7 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
             reader.close();
 
             data = new JSONObject(json.toString());
-            return "Погода обновлена";
+            return context.getString(R.string.weatherWasUpdated);
         } catch(Exception e) {
             return null;
         }

@@ -1,8 +1,10 @@
 package edu.adm.spbstu.whattowear;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
@@ -86,6 +88,7 @@ public class Animator {
 
     }
 
+    @SuppressLint("NewApi")
     void snowAnimation(int speed) {
 
         if (speed == 0){
@@ -107,11 +110,17 @@ public class Animator {
                         precips[i][j].getX() + 10,
                         precips[i][j].getY(),
                         precips[i][j].getY() + 2 * screenHeight / 3);
+
                 animation.setDuration(10000 / speed);
                 animation.setRepeatCount(Animation.INFINITE);
                 animation.setStartOffset(i*500 + j*100);
 
+                AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+                alphaAnimation.setDuration(10000 / speed);
+
                 precips[i][j].startAnimation(animation);
+                precips[i][j].startAnimation(alphaAnimation);
+              //  precips[i][j].setImageAlpha(0);
             }
         }
     }

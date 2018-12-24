@@ -30,35 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        if (!isConnectingToInternet(this)) {
-//            Button onTheSiteButton = findViewById(R.id.onTheSite);
-//            onTheSiteButton.setBackgroundColor(Color.GRAY);
-//            onTheSiteButton.setEnabled(false);
-//        }
-//
-//        ConstraintLayout constraintLayout = findViewById(R.id.view);
-//        constraintLayout.setBackgroundColor(Color.rgb(0,0, 0));
-//
-
-//        super.onCreate(savedInstanceState);
-//        // Detect language
-//        String strLang = Locale.getDefault().getDisplayLanguage();
-//        int language;
-//        if (strLang.equalsIgnoreCase("english")) {
-//            language = AppIntro.LANGUAGE_ENG;
-//        } else if (strLang.equalsIgnoreCase("русский")) {
-//            language = AppIntro.LANGUAGE_RUS;
-//        } else {
-//            language = AppIntro.LANGUAGE_UNKNOWN;
-//
-//        }
-//
-//        ConstraintLayout constraintLayout = findViewById(R.id.view);
-//        constraintLayout.setBackgroundColor(Color.rgb(0,0, 0));
-
 
         super.onCreate(savedInstanceState);
         // Detect language
