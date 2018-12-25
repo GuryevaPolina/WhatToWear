@@ -6,6 +6,7 @@ import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
@@ -106,21 +107,28 @@ public class Animator {
 
                 constraintLayout.addView(precips[i][j], 0);
 
-                Animation animation = new TranslateAnimation(precips[i][j].getX(),
+                AnimationSet as =  new AnimationSet(true);
+                as.setFillAfter(true);
+
+                TranslateAnimation translateAnimation = new TranslateAnimation(precips[i][j].getX(),
                         precips[i][j].getX() + 10,
                         precips[i][j].getY(),
                         precips[i][j].getY() + 2 * screenHeight / 3);
 
-                animation.setDuration(10000 / speed);
-                animation.setRepeatCount(Animation.INFINITE);
-                animation.setStartOffset(i*500 + j*100);
+                translateAnimation.setDuration(10000 / speed);
+                translateAnimation.setRepeatCount(Animation.INFINITE);
+                translateAnimation.setStartOffset(i*500 + j*100);
+                as.addAnimation(translateAnimation);
 
                 AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
-                alphaAnimation.setDuration(10000 / speed);
+                alphaAnimation.setDuration(15000 / speed);
+                alphaAnimation.setStartOffset(i*500 + j*100);
+                alphaAnimation.setRepeatCount(Animation.INFINITE);
+                as.addAnimation(alphaAnimation);
 
-                precips[i][j].startAnimation(animation);
-                precips[i][j].startAnimation(alphaAnimation);
-              //  precips[i][j].setImageAlpha(0);
+                precips[i][j].startAnimation(as);
+
+              //  precips[i][j].startAnimation(translateAnimation);
             }
         }
     }
