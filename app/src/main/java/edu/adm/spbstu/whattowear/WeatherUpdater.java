@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import android.annotation.SuppressLint;
@@ -44,7 +45,11 @@ public class WeatherUpdater extends AsyncTask<String, Integer, String> {
     @Override
     protected String doInBackground(String... strings) {
         try {
-            URL url = new URL(API_BASE_PATH + API_KEY + "/" + cityCoordinate + "?lang=ru");
+            String lang = "en";
+            if (Locale.getDefault().getDisplayLanguage().equals("русский")) {
+                lang = "ru";
+            }
+            URL url = new URL(API_BASE_PATH + API_KEY + "/" + cityCoordinate + "?lang=" + lang);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.setRequestProperty("Accept", "application/json");
 

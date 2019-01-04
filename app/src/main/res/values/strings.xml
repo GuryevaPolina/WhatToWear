@@ -61,4 +61,5 @@
     <string name="khabarovsk">" "</string>
     <string name="chelyabinsk">" "</string>
     <string name="noInternet">" "</string>
+    <string name="weatherWasUpdated">" "</string>
 </resources>
